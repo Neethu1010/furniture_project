@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {% if messages %}
+        {% for i in messages %}
+            {% if i.tags == 'success' %}
+                <script>
+                    swal('{{i}}', '', 'success');
+                </script>
+            {% elif i.tags == 'error' %}
+                <script>
+                    swal('{{i}}', '', 'error');
+                </script>
+            {% elif i.tags == 'warning' %}
+                <script>
+                    swal('{{i}}', '', 'warning');
+                </script>
+            {% else %}
+                <script>
+                    swal('{{i}}', '', 'info');
+                </script>
+            {% endif %}
+        {% endfor%}
+    {% endif %}
+<div class="col-12 grid-margin">
+  <form class="forms-sample" method="post" action="{% url 'saveproduct' %}" enctype="multipart/form-data">
+                 {% csrf_token %}
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Producct</h4>
+                  <form class="form-sample">
+
+                       <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Product Category</label>
+                          <div class="col-sm-9">
+                            <select class="form-control" name="pc">
+                              <option>Sofa</option>
+
+                              <option>Chair</option>
+                              <option>Shelf</option>
+                              <option>Shoe rack</option>
+
+                               <option>Chairs</option>
+                              <option>Tables</option>
+                              <option>Bed</option>
+                               <option>Stool</option>
+                              <option>Diwan</option>
+                              <option>Lamp</option>
+                               <option>Wardrobe</option>
+                              <option>Decorates</option>
+                              <option>Kitchen Cabinate</option>
+                               <option>Pouf</option>
+                              <option>Bench</option>
+                              <option>Tea poy</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Product Name</label>
+                          <div class="col-sm-9">
+                            <input type="text" name="pname"  class="form-control">
+                          </div>
+                        </div>
+                      </div>
+<!--                      <div class="col-md-6">-->
+<!--                        <div class="form-group row">-->
+<!--                          <label class="col-sm-3 col-form-label">Last Name</label>-->
+<!--                          <div class="col-sm-9">-->
+<!--                            <input type="text" class="form-control">-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+                    </div>
+<!--                    <div class="row">-->
+<!--                      <div class="col-md-6">-->
+<!--                        <div class="form-group row">-->
+<!--                          <label class="col-sm-3 col-form-label">Gender</label>-->
+<!--                          <div class="col-sm-9">-->
+<!--                            <select class="form-control">-->
+<!--                              <option>Male</option>-->
+<!--                              <option>Female</option>-->
+<!--                            </select>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="col-md-6">-->
+<!--                        <div class="form-group row">-->
+<!--                          <label class="col-sm-3 col-form-label">Date of Birth</label>-->
+<!--                          <div class="col-sm-9">-->
+<!--                            <input class="form-control" placeholder="dd/mm/yyyy">-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="row">-->
+<!--                      <div class="col-md-6">-->
+<!--                        <div class="form-group row">-->
+<!--                          <label class="col-sm-3 col-form-label">Category</label>-->
+<!--                          <div class="col-sm-9">-->
+<!--                            <select class="form-control">-->
+<!--                              <option>Category1</option>-->
+<!--                              <option>Category2</option>-->
+<!--                              <option>Category3</option>-->
+<!--                              <option>Category4</option>-->
+<!--                            </select>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                      <div class="col-md-6">-->
+<!--                        <div class="form-group row">-->
+<!--                          <label class="col-sm-3 col-form-label">Membership</label>-->
+<!--                          <div class="col-sm-4">-->
+<!--                            <div class="form-check">-->
+<!--                              <label class="form-check-label">-->
+<!--                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked="">-->
+<!--                                Free-->
+<!--                              <i class="input-helper"></i></label>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                          <div class="col-sm-5">-->
+<!--                            <div class="form-check">-->
+<!--                              <label class="form-check-label">-->
+<!--                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2">-->
+<!--                                Professional-->
+<!--                              <i class="input-helper"></i></label>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+                    <p class="card-description">
+
+                    </p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Quantity</label>
+                          <div class="col-sm-9">
+                            <input type="number" name="qua" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">MRP</label>
+                          <div class="col-sm-9">
+                            <input type="number" name="mrp" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Description</label>
+                          <div class="col-sm-9">
+                            <input type="text" name="desc" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">County of origin</label>
+                          <div class="col-sm-9">
+                            <input type="text" name="cou" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">Manufactured By</label>
+                          <div class="col-sm-9">
+                            <input type="text"   name="man" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                       <div class="form-group">
+                      <label>upload product image1</label>
+                      <input type="file" class="file-upload-default">
+                      <div class="input-group col-xs-12">
+                        <input type="file" name="img1"  placeholder="image">
+<!--                        <span class="input-group-append">-->
+<!--                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>-->
+                        </span>
+                      </div>
+                    </div>
+                       <div class="form-group">
+                      <label>upload category image2</label>
+                      <input type="file" class="file-upload-default">
+                      <div class="input-group col-xs-12">
+                        <input type="file" name="img2"  placeholder="image">
+<!--                        <span class="input-group-append">-->
+<!--                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>-->
+                        </span>
+                      </div>
+                    </div>
+                       <div class="form-group">
+                      <label>upload category image3</label>
+                      <input type="file" class="file-upload-default">
+                      <div class="input-group col-xs-12">
+                        <input type="file" name="img3"  placeholder="image">
+<!--                        <span class="input-group-append">-->
+<!--                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>-->
+                        </span>
+                      </div>
+                    </div>
+                    <div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-light">Cancel</button></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+</body>
+</html>
+{% endblock %}
